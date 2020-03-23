@@ -4,13 +4,14 @@ package me.livenow.springboot.domain.posts;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import me.livenow.springboot.domain.BaseTimeEntity;
 
 import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
 @Entity
-public class Posts {
+public class Posts extends BaseTimeEntity {             //만든시간 , 수정시간을 넣기위해 상속받는다.
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
