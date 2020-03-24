@@ -1,3 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea
 .gradle
+
+application-oauth.properties
+#id와 password는 중요정보이기 때문에 깃허브 커밋에 제외
