@@ -1,3 +1,4 @@
+/*
 package me.livenow.springboot.config.auth.dto;
 
 import lombok.Builder;
@@ -51,8 +52,8 @@ public class OAuthAttributes {
                 .picture((String) response.get("profile_image"))
                 .attributes(response)
                 .nameAttributeKey(userNameAttributeName)
-                .build();
-    }
+      ?>^\.build();
+    }0
 
     public User toEntity() {
         return User.builder()
@@ -64,3 +65,4 @@ public class OAuthAttributes {
                 .build();
     }
 }
+*/

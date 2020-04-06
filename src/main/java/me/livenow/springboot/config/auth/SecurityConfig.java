@@ -1,3 +1,4 @@
+/*
 package me.livenow.springboot.config.auth;
 
 
@@ -31,4 +32,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .userInfoEndpoint()
                 .userService(customOAuth2UserService);
     }
-}
+}*/
