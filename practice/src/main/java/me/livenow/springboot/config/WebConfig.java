@@ -1,3 +1,4 @@
+/*
 package me.livenow.springboot.config;
 
 import lombok.RequiredArgsConstructor;
@@ -18,3 +19,4 @@ public class WebConfig implements WebMvcConfigurer {
         argumentResolvers.add(loginUserArgumentResolver);
     }
 }
+*/

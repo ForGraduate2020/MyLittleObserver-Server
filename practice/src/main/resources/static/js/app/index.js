@@ -1,3 +1,4 @@
+/*
 //var main = {
 var index= {
     init: function () {
@@ -75,3 +76,4 @@ var index= {
 };
 index.init();
 //main.init();
+*/
