@@ -1,3 +1,4 @@
+/*
 package me.livenow.springboot.config.auth;
 
 
@@ -32,3 +33,4 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver 
         return httpSession.getAttribute("user");
     }
 }
+*/

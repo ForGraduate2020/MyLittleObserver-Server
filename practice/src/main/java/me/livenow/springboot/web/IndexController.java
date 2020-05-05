@@ -1,3 +1,4 @@
+/*
 package me.livenow.springboot.web;
 
 
@@ -48,3 +49,4 @@ public class IndexController {
     }
 
 }
+*/

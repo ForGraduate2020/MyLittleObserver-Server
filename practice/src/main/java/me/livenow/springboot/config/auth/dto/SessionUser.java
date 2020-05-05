@@ -1,3 +1,4 @@
+/*
 package me.livenow.springboot.config.auth.dto;
 
 import lombok.Getter;
@@ -17,3 +18,4 @@ public class SessionUser implements Serializable {
         this.picture = user.getPicture();
     }
 }
+*/
