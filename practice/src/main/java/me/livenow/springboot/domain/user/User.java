@@ -1,3 +1,4 @@
+/*
 package me.livenow.springboot.domain.user;
 
 import lombok.Builder;
@@ -54,3 +55,4 @@ public class User extends BaseTimeEntity {
         return this.role.getKey();
     }
 }
+*/

@@ -20,7 +20,7 @@ public class Mlo {
     private Long id;
 
     @Column(nullable = false)
-    private String mloName;
+    private String mloName;         //mloId라고하면 안됫었음, Id를 변수로 넣는거 조심하자.
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="mlo_id")

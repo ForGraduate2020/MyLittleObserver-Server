@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Record {
+public class MloRecord {
     @Id @GeneratedValue
     @Column(name="record_id")
     private Long id;

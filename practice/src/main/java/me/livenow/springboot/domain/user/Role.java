@@ -1,3 +1,4 @@
+/*
 package me.livenow.springboot.domain.user;
 
 import lombok.Getter;
@@ -13,3 +14,4 @@ public enum Role {
     private final String title;
 
 }
+*/

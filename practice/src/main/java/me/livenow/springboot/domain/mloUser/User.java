@@ -13,15 +13,15 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class MloUser {
+public class User {
     @Id @GeneratedValue
-    @Column(name = "mlouser_id")
+    @Column(name = "user_id")
     private Long id;
 
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="mlouser_id")
+    @JoinColumn(name="user_id")
     private List<Mlo> mlos = new ArrayList<>();
 
 }
