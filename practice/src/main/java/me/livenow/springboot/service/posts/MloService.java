@@ -1,9 +1,8 @@
 package me.livenow.springboot.service.posts;
 
 import lombok.RequiredArgsConstructor;
-import me.livenow.springboot.domain.Record.RecordRepository;
+import me.livenow.springboot.domain.record.RecordRepository;
 import me.livenow.springboot.domain.alarm.AlarmRepository;
-import me.livenow.springboot.domain.mlo.Mlo;
 import me.livenow.springboot.domain.mlo.MloRepository;
 import me.livenow.springboot.domain.mloUser.User;
 

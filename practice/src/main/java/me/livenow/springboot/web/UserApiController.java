@@ -32,10 +32,10 @@ public class UserApiController {
         return new UserResponseDto(collect.size(), collect);
 }
 
-    @PostMapping("/api/v1/{user_id}")
+/*    @PostMapping("/api/v1/{user_id}")
     public long MloSave(@PathVariable("user_id") Long mlo_id, @RequestBody @Valid MloSaveRequestDto mloSaveRequestDto ){
 
-    }
+    }*/
 
 
 

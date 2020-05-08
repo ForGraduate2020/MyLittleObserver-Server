@@ -20,8 +20,14 @@ public class User {
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="user_id")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Mlo> mlos = new ArrayList<>();
+
+    //==연관관계 편의 메서드==//
+
+    public void addMlo(Mlo mlo){
+        mlos.add(mlo);
+        mlo.setUser(this);
+    }
 
 }
