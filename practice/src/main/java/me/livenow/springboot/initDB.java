@@ -28,6 +28,7 @@ public class initDB {
     @PostConstruct
     public void init(){
         initService.dbInit1();
+        initService.dbInit2();
     }
 
     @Component
@@ -38,7 +39,7 @@ public class initDB {
 
         public void dbInit1(){
             User user = new User();
-            user.setName("UserA");
+            user.setName("userA");
             em.persist(user);
 
             Mlo mlo = new Mlo();
@@ -74,10 +75,6 @@ public class initDB {
             em.persist(record2);
 
 
-
-
-
-
         /*    Alarm alarm1=Alarm.createAlarm(mlo,null);       //녹음 값이 없을때
 
             em.persist(alarm1);
@@ -90,7 +87,44 @@ public class initDB {
 
 
         }
+        public void dbInit2() {
+            User user = new User();
+            user.setName("userB");
+            em.persist(user);
 
-    }
+            Mlo mlo = new Mlo();
+            mlo.setMloName("mlo3");
+            mlo.setUser(user);
+            em.persist(mlo);
+
+            Mlo mlo2 = new Mlo();
+            mlo2.setMloName("mlo4");
+            mlo2.setUser(user);
+            em.persist(mlo);
+
+            Alarm alarm = new Alarm();
+            alarm.setMlo(mlo);
+            alarm.setTumble("tumble3");
+            em.persist(alarm);
+
+
+            Record record = new Record();
+            record.setAlarm(alarm);
+            record.setFileName("record3");
+            em.persist(record);
+
+            Alarm alarm2 = new Alarm();
+            alarm2.setMlo(mlo);
+            alarm2.setTumble("tumble4");
+            em.persist(alarm2);
+
+
+            Record record2 = new Record();
+            record2.setAlarm(alarm2);
+            record2.setFileName("record4");
+            em.persist(record2);
+        }
+
+        }
 
 }

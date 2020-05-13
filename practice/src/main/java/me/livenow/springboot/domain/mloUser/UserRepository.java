@@ -32,15 +32,19 @@ public class UserRepository {
                 .getResultList();
     }
 
-    public List<User> findMlo(){                                                 //user에 등록된 mlo를 모두 찾는다 .
-        return em.createQuery("select u from User u join u.mlos  ", User.class)
-                .getResultList();
-    }
-
     public List<User> findByName(String name){            // 이름에 의해서 조회하는 기능, 파라미터 바인딩
         return em.createQuery("select u from User u where u.name = :name", User.class)
                 .setParameter("name", name)
                 .getResultList();
     }
 
+
+    public List<User> findAllWithMlos(int offset, int limit) {
+        return em.createQuery(
+                "select u from User u"+
+                        " join fetch u.mlos", User.class)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+    }
 }

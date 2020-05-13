@@ -33,10 +33,6 @@ public class MloService {
         return user.getId();
     }
 
-    public List<User> findMlo(){
-        return userRepository.findMlo();
-    }
-
 
 
 }
