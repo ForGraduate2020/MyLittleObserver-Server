@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import me.livenow.springboot.domain.mlo.Mlo;
 import me.livenow.springboot.domain.mloUser.User;
 import me.livenow.springboot.domain.mloUser.UserRepository;
-import me.livenow.springboot.service.posts.MloService;
+import me.livenow.springboot.service.posts.UserService;
 import me.livenow.springboot.web.dto.UserSaveRequestDto;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,15 +16,49 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @RestController
 public class UserApiController {
-    private final MloService mloService;
+    private final UserService userService;
     private final UserRepository userRepository;
 
+    //user등록
     @PostMapping("/api/v1/user")
     public long save(@RequestBody @Valid UserSaveRequestDto userSaveRequestDto){
-            return mloService.userSave(userSaveRequestDto);
+            return userService.userSave(userSaveRequestDto);
     }
 
-    @GetMapping("/api/v1/users") //mlo 확인
+    //user if로  mlo 조회
+    @GetMapping("/api/v1/user/{name}")
+    public List<UserDto> findOneUser(@RequestParam(value = "offset", defaultValue = "0") int offset,
+                                     @RequestParam(value = "limit", defaultValue = "100") int limit,
+                                        @PathVariable("name") String name){
+        List<User> user = userRepository.findMloByName(name, offset, limit);
+        List<UserDto> collect = user.stream()
+                .map(u -> new UserDto(u))
+                .collect(Collectors.toList());
+        return collect;
+
+    }
+    // 모든 user 이름 조회
+    @GetMapping("/api/v1/user/all")
+    public List<AllUserDto> findAllUser(){
+        List<User> all = userRepository.findAll();
+        List<AllUserDto> collect = all.stream().map(u -> new AllUserDto(u)).collect(Collectors.toList());
+        return collect;
+    }
+
+
+    @Data
+    static class AllUserDto{
+        private Long userId;
+        private String name;
+
+        public AllUserDto(User user) {
+            this.userId = user.getId();
+            this.name = user.getName();
+        }
+    }
+
+
+    @GetMapping("/api/v1/users") //모든 user의 mlo 확인
     public List<UserDto> mlosV1( @RequestParam(value = "offset", defaultValue = "0") int offset,
                                  @RequestParam(value = "limit", defaultValue = "100") int limit) {
         List<User> users = userRepository.findAllWithMlos(offset, limit);
@@ -34,8 +68,6 @@ public class UserApiController {
                 .collect(Collectors.toList());
 
         return collect;
-
-
     }
 
     @Data
