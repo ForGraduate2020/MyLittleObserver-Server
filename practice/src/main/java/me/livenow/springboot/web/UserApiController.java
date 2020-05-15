@@ -25,11 +25,11 @@ public class UserApiController {
             return userService.userSave(userSaveRequestDto);
     }
 
-    //user if로  mlo 조회
-    @GetMapping("/api/v1/user/{name}")
+    //user id로  mlo 조회(mlo가 없을 시 조회 안됨 )
+    @GetMapping("/api/v1/user/{username}")
     public List<UserDto> findOneUser(@RequestParam(value = "offset", defaultValue = "0") int offset,
                                      @RequestParam(value = "limit", defaultValue = "100") int limit,
-                                        @PathVariable("name") String name){
+                                        @PathVariable("username") String name){
         List<User> user = userRepository.findMloByName(name, offset, limit);
         List<UserDto> collect = user.stream()
                 .map(u -> new UserDto(u))
@@ -37,7 +37,7 @@ public class UserApiController {
         return collect;
 
     }
-    // 모든 user 이름 조회
+    // 모든 user 이름,id 조회
     @GetMapping("/api/v1/user/all")
     public List<AllUserDto> findAllUser(){
         List<User> all = userRepository.findAll();
@@ -87,11 +87,11 @@ public class UserApiController {
 
     @Data
     static class UserMloDto {
-        private String name; //user 이름름
+        //private String userName; //user 이름름
         private String mloName; //mlo 이름
 
         public UserMloDto(Mlo mlo) {
-            name = mlo.getUser().getName();
+           // userName = mlo.getUser().getName();
             mloName = mlo.getMloName();
         }
     }

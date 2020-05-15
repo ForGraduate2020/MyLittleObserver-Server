@@ -43,11 +43,4 @@ public class Mlo {
         alarm.setMlo(this);
     }
 
-    //=-생성 메서드 ==//
-    public void setMlo(User user){
-        this.user= user;
-        user.getMlos().add(this);
-    }
-
-
 }

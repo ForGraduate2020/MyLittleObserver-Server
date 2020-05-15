@@ -23,11 +23,5 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Mlo> mlos = new ArrayList<>();
 
-    //==연관관계 편의 메서드==//
-
-    public void addMlo(Mlo mlo){
-        mlos.add(mlo);
-        mlo.setUser(this);
-    }
 
 }
