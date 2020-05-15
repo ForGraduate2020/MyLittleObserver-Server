@@ -22,8 +22,8 @@ public class MloApiController {
 
 
     //유저 이름을 통한 mlo 등록 기능
-    @PostMapping("/api/v1/mlo/{userName}")
-    public long save(@PathVariable("userName") String name, @RequestBody @Valid MloSaveRequestDto mloSaveRequestDto) {
+    @PostMapping("/api/v1/mlo")
+    public long save(@RequestParam("userName") String name, @RequestBody @Valid MloSaveRequestDto mloSaveRequestDto) {
         return mloService.mloSave(name, mloSaveRequestDto);
     }
 
