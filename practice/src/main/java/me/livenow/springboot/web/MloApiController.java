@@ -20,18 +20,19 @@ public class MloApiController {
     private final MloService mloService;
     private final MloRepository mloRepository;
 
-    //mlo 등록 기능
-    @PostMapping("/api/v1/{userId}/mlo")
-    public long save(@PathVariable("userId") Long id, @RequestBody @Valid MloSaveRequestDto mloSaveRequestDto) {
-        return mloService.mloSave(id, mloSaveRequestDto);
+
+    //유저 이름을 통한 mlo 등록 기능
+    @PostMapping("/api/v1/mlo/{userName}")
+    public long save(@PathVariable("userName") String name, @RequestBody @Valid MloSaveRequestDto mloSaveRequestDto) {
+        return mloService.mloSave(name, mloSaveRequestDto);
     }
 
-    //mlo의 녹음파일 보기
-    @GetMapping("/api/v1/{mloId}")
-    public List<MloDto> findAllAlarmsByMlo(@PathVariable("mloId") Long mloId,
+    //mlo의 정보, 알람 보기
+    @GetMapping("/api/v1/mlo/{mloName}")
+    public List<MloDto> findAllAlarmsByMlo(@PathVariable("mloName") String mloName,
                                            @RequestParam(value = "offset", defaultValue = "0") int offset,
                                            @RequestParam(value = "limit", defaultValue = "100") int limit) {
-        List<Mlo> alarmByMlo = mloRepository.findAlarmByMlo(mloId, offset, limit);
+        List<Mlo> alarmByMlo = mloRepository.findAlarmByMlo(mloName, offset, limit);
         List<MloDto> collect = alarmByMlo.stream().map(m -> new MloDto(m)).collect(Collectors.toList());
         return collect;
     }

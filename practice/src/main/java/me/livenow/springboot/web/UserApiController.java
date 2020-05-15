@@ -25,7 +25,7 @@ public class UserApiController {
             return userService.userSave(userSaveRequestDto);
     }
 
-    //user id로  mlo 조회(mlo가 없을 시 조회 안됨 )
+    //user 이름으로  mlo 조회(mlo가 없을 시 조회 안됨 )
     @GetMapping("/api/v1/user/{username}")
     public List<UserDto> findOneUser(@RequestParam(value = "offset", defaultValue = "0") int offset,
                                      @RequestParam(value = "limit", defaultValue = "100") int limit,
@@ -46,19 +46,9 @@ public class UserApiController {
     }
 
 
-    @Data
-    static class AllUserDto{
-        private Long userId;
-        private String name;
-
-        public AllUserDto(User user) {
-            this.userId = user.getId();
-            this.name = user.getName();
-        }
-    }
 
 
-    @GetMapping("/api/v1/users") //모든 user의 mlo 확인
+    @GetMapping("/api/v1/user/mlos") //모든 user의 mlo 확인
     public List<UserDto> mlosV1( @RequestParam(value = "offset", defaultValue = "0") int offset,
                                  @RequestParam(value = "limit", defaultValue = "100") int limit) {
         List<User> users = userRepository.findAllWithMlos(offset, limit);
@@ -68,6 +58,17 @@ public class UserApiController {
                 .collect(Collectors.toList());
 
         return collect;
+    }
+
+    @Data
+    static class AllUserDto{
+        private Long userId;
+        private String name;
+
+        public AllUserDto(User user) {
+            this.userId = user.getId();
+            this.name = user.getName();
+        }
     }
 
     @Data
