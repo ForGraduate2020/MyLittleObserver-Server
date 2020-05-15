@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
+import java.time.LocalDateTime;
 
 
 /**
@@ -55,6 +56,7 @@ public class initDB {
             Alarm alarm = new Alarm();
             alarm.setMlo(mlo);
             alarm.setTumble("tumble1");
+            alarm.setDate(LocalDateTime.now());
             em.persist(alarm);
 
 
@@ -66,6 +68,7 @@ public class initDB {
             Alarm alarm2 = new Alarm();
             alarm2.setMlo(mlo);
             alarm2.setTumble("tumble2");
+            alarm2.setDate(LocalDateTime.now());
             em.persist(alarm2);
 
 
@@ -73,17 +76,6 @@ public class initDB {
             record2.setAlarm(alarm2);
             record2.setFileName("record2");
             em.persist(record2);
-
-
-        /*    Alarm alarm1=Alarm.createAlarm(mlo,null);       //녹음 값이 없을때
-
-            em.persist(alarm1);
-
-            Record record = new Record();
-            record.setFileName("record1");
-
-            Alarm alarm2= Alarm.createAlarm(mlo, record);           //녹음된 값이 있을때
-            em.persist(alarm2);*/
 
 
         }
@@ -105,6 +97,7 @@ public class initDB {
             Alarm alarm = new Alarm();
             alarm.setMlo(mlo);
             alarm.setTumble("tumble3");
+            alarm.setDate(LocalDateTime.now());
             em.persist(alarm);
 
 
@@ -116,6 +109,7 @@ public class initDB {
             Alarm alarm2 = new Alarm();
             alarm2.setMlo(mlo);
             alarm2.setTumble("tumble4");
+            alarm2.setDate(LocalDateTime.now());
             em.persist(alarm2);
 
 

@@ -87,11 +87,12 @@ public class UserApiController {
 
     @Data
     static class UserMloDto {
-        //private String userName; //user 이름름
+        private Long mloId; //user 이름름
         private String mloName; //mlo 이름
 
+
         public UserMloDto(Mlo mlo) {
-           // userName = mlo.getUser().getName();
+             mloId = mlo.getId();
             mloName = mlo.getMloName();
         }
     }

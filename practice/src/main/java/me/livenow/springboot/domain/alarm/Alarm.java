@@ -9,6 +9,7 @@ import me.livenow.springboot.domain.mlo.Mlo;
 
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -22,6 +23,8 @@ public class Alarm {
     private String heart;
     private String decibel;
     private String tumble;
+
+    private LocalDateTime date;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mlo_id")
