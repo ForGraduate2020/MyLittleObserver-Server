@@ -22,13 +22,13 @@ public class MloApiController {
 
 
     //유저 이름을 통한 mlo 등록 기능
-    @PostMapping("/api/v1/mlo")
-    public long save(@RequestParam("userName") String name, @RequestBody @Valid MloSaveRequestDto mloSaveRequestDto) {
+    @PostMapping("/api/v1/users/{userName}/mlos")
+    public long save(@PathVariable("userName") String name, @RequestBody @Valid MloSaveRequestDto mloSaveRequestDto) {
         return mloService.mloSave(name, mloSaveRequestDto);
     }
 
-    //mlo의 정보, 알람 보기
-    @GetMapping("/api/v1/mlo/{mloName}")
+    //지정 mlo의 정보, 알람 보기
+    @GetMapping("/api/v1/mlos/{mloName}")
     public List<MloDto> findAllAlarmsByMlo(@PathVariable("mloName") String mloName,
                                            @RequestParam(value = "offset", defaultValue = "0") int offset,
                                            @RequestParam(value = "limit", defaultValue = "100") int limit) {

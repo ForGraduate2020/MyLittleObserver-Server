@@ -20,13 +20,20 @@ public class UserApiController {
     private final UserRepository userRepository;
 
     //user등록
-    @PostMapping("/api/v1/user")
+    @PostMapping("/api/v1/users")
     public long save(@RequestBody @Valid UserSaveRequestDto userSaveRequestDto){
             return userService.userSave(userSaveRequestDto);
     }
+    // 모든 user 이름,id 조회
+    @GetMapping("/api/v1/users")
+    public List<AllUserDto> findAllUser(){
+        List<User> all = userRepository.findAll();
+        List<AllUserDto> collect = all.stream().map(u -> new AllUserDto(u)).collect(Collectors.toList());
+        return collect;
+    }
 
     //user 이름으로  mlo 조회(mlo가 없을 시 조회 안됨 )
-    @GetMapping("/api/v1/user/{username}")
+    @GetMapping("/api/v1/users/{username}")
     public List<UserDto> findOneUser(@RequestParam(value = "offset", defaultValue = "0") int offset,
                                      @RequestParam(value = "limit", defaultValue = "100") int limit,
                                         @PathVariable("username") String name){
@@ -37,18 +44,7 @@ public class UserApiController {
         return collect;
 
     }
-    // 모든 user 이름,id 조회
-    @GetMapping("/api/v1/user/all")
-    public List<AllUserDto> findAllUser(){
-        List<User> all = userRepository.findAll();
-        List<AllUserDto> collect = all.stream().map(u -> new AllUserDto(u)).collect(Collectors.toList());
-        return collect;
-    }
-
-
-
-
-    @GetMapping("/api/v1/user/mlos") //모든 user의 mlo 확인
+    @GetMapping("/api/v1/users/mlos") //모든 user의 mlo 확인
     public List<UserDto> mlosV1( @RequestParam(value = "offset", defaultValue = "0") int offset,
                                  @RequestParam(value = "limit", defaultValue = "100") int limit) {
         List<User> users = userRepository.findAllWithMlos(offset, limit);
