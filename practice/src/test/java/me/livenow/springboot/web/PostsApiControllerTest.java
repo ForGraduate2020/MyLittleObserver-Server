@@ -4,8 +4,6 @@ package me.livenow.springboot.web;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import me.livenow.springboot.domain.posts.Posts;
 import me.livenow.springboot.domain.posts.PostsRepository;
-import me.livenow.springboot.web.dto.PostsSaveRequestDto;
-import me.livenow.springboot.web.dto.PostsUpdateRequestDto;
 import org.assertj.core.api.Assertions;
 import org.junit.After;
 import org.junit.Before;

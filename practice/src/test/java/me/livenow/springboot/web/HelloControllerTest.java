@@ -2,7 +2,6 @@ package me.livenow.springboot.web;
 
 
 import me.livenow.springboot.config.auth.SecurityConfig;
-import me.livenow.springboot.web.HelloController;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
