@@ -25,7 +25,8 @@ public class Alarm {
     @JoinColumn(name = "mlo_id")
     private Mlo mlo;
 
-    @OneToOne(mappedBy = "alarm", fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "record_id")
     private Record record;
 
     //==연관관계 편의 메서드 ==//
@@ -33,4 +34,10 @@ public class Alarm {
         this.mlo = mlo;
         mlo.getAlarms().add(this);
     }
+
+    public void setRecord(Record record){
+        this.record=record;
+        record.getAlarms().add(this);
+    }
+
 }

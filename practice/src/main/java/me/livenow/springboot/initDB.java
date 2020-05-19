@@ -53,31 +53,30 @@ public class initDB {
             mlo2.setUser(user);
             em.persist(mlo);
 
+
+            Record record =new Record();
+            record.setFileName("record1");
+            em.persist(record);
+
             Alarm alarm = new Alarm();
             alarm.setMlo(mlo);
             alarm.setTumble("tumble1");
             alarm.setDate(LocalDateTime.now());
+            alarm.setRecord(record);
             em.persist(alarm);
 
-
-            Record record =new Record();
-            record.setAlarm(alarm);
-            record.setFileName("record1");
-            em.persist(record);
 
             Alarm alarm2 = new Alarm();
             alarm2.setMlo(mlo);
             alarm2.setTumble("tumble2");
             alarm2.setDate(LocalDateTime.now());
+            alarm2.setRecord(record);
             em.persist(alarm2);
 
 
             Record record2 =new Record();
-            record2.setAlarm(alarm2);
             record2.setFileName("record2");
             em.persist(record2);
-
-
         }
         public void dbInit2() {
             User user = new User();
@@ -94,31 +93,29 @@ public class initDB {
             mlo2.setUser(user);
             em.persist(mlo);
 
+            Record record = new Record();
+            record.setFileName("record3");
+            em.persist(record);
+
             Alarm alarm = new Alarm();
             alarm.setMlo(mlo);
             alarm.setTumble("tumble3");
             alarm.setDate(LocalDateTime.now());
+            alarm.setRecord(record);
             em.persist(alarm);
 
-
-            Record record = new Record();
-            record.setAlarm(alarm);
-            record.setFileName("record3");
-            em.persist(record);
 
             Alarm alarm2 = new Alarm();
             alarm2.setMlo(mlo);
             alarm2.setTumble("tumble4");
             alarm2.setDate(LocalDateTime.now());
+            alarm2.setRecord(record);
             em.persist(alarm2);
 
 
             Record record2 = new Record();
-            record2.setAlarm(alarm2);
             record2.setFileName("record4");
             em.persist(record2);
         }
-
-        }
-
+    }
 }

@@ -1,13 +1,12 @@
 package me.livenow.springboot.web;
 
 import lombok.RequiredArgsConstructor;
+import me.livenow.springboot.domain.alarm.Alarm;
 import me.livenow.springboot.domain.alarm.AlarmRepository;
 import me.livenow.springboot.service.posts.AlarmService;
 import me.livenow.springboot.web.dto.AlarmSaveRequestDto;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import me.livenow.springboot.web.dto.RecordResponseDto;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,8 +15,18 @@ public class AlarmApiController {
     private final AlarmService alarmService;
     private final AlarmRepository alarmRepository;
 
+    //mlo에 알람 저장
     @PostMapping("/api/v1/mlos/{mloName}/alarms")
     public long save(@PathVariable("mloName") String name, @RequestBody AlarmSaveRequestDto alarmSaveRequestDto) {
         return alarmService.save(name, alarmSaveRequestDto);
     }
+
+    //alarmId를 통한 recode 확인
+    @GetMapping("/api/v1/mlos/{alarmId}/record")
+    public RecordResponseDto findRecordByAlarmId(@PathVariable("alarmId") Long id){
+        Alarm recordByAlarmId = alarmRepository.findRecordByAlarmId(id);
+        return new RecordResponseDto(recordByAlarmId);
+    }
+
+
 }
