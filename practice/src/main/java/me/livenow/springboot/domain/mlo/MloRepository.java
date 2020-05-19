@@ -43,7 +43,7 @@ public class MloRepository {
 
     public List<Mlo> findAlarmByMlo(String name, int offset, int limit) {
         return em.createQuery("select m from Mlo m"+
-                " join fetch m.alarms"+
+                " join fetch m.alarms a"+
                 " where m.mloName =:name", Mlo.class)
                 .setParameter("name", name)
                 .setFirstResult(offset)

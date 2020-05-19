@@ -1,7 +1,17 @@
 package me.livenow.springboot.domain.alarm;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 
-public interface AlarmRepository extends JpaRepository<Alarm,Long> {
+import javax.persistence.EntityManager;
+
+@Repository
+@RequiredArgsConstructor
+public class AlarmRepository {
+    private final EntityManager em;
+
+    public void save(Alarm alarm){
+        em.persist(alarm);}
+
 
 }

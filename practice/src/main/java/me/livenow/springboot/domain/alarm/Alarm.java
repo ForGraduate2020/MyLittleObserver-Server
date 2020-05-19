@@ -1,13 +1,9 @@
 package me.livenow.springboot.domain.alarm;
-
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import me.livenow.springboot.domain.record.Record;
 import me.livenow.springboot.domain.mlo.Mlo;
-
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -23,7 +19,6 @@ public class Alarm {
     private String heart;
     private String decibel;
     private String tumble;
-
     private LocalDateTime date;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -38,20 +33,4 @@ public class Alarm {
         this.mlo = mlo;
         mlo.getAlarms().add(this);
     }
-
-/*    public void setRecord(Record record){
-        this.record = record;
-        record.setAlarm(this);
-    }
-
-    //== 생성 메서드 ==//
-    public static Alarm createAlarm(Mlo mlo, Record record){
-        Alarm alarm = new Alarm();
-        alarm.setMlo(mlo);
-        alarm.setRecord(record);
-        return alarm;
-    }*/
-
-
-
 }

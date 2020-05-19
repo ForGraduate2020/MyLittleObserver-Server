@@ -41,7 +41,7 @@ public class UserRepository {
 
     public List<User> findMloByName(String name, int offset, int limit){            // 이름에 의해서 조회하는 기능, 파라미터 바인딩
         return em.createQuery("select u from User u " +
-                " join fetch u.mlos" +
+                " join fetch u.mlos m" +
                 " where u.name = :name" , User.class)
                 .setParameter("name", name)
                 .setFirstResult(offset)
