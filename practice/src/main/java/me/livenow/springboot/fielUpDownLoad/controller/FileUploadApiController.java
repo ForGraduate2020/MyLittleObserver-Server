@@ -27,15 +27,17 @@ import java.util.stream.Collectors;
 
 
 @RestController
-@RequiredArgsConstructor
 public class FileUploadApiController {
 
-    private static final Logger logger = LoggerFactory.getLogger(FileUploadApiController.class);
-    private final RecordRepository recordRepository;
-    private final RecordService recordService;
+    private static  Logger logger = LoggerFactory.getLogger(FileUploadApiController.class);
+    @Autowired
+    private RecordRepository recordRepository;
 
+    @Autowired
+    private  RecordService recordService;
 
-    private final FileUploadDownloadService service;
+    @Autowired
+    private FileUploadDownloadService service;
 
     //mloName을 통한 uploads
     @PostMapping("/api/v1/{mloName}/uploadFile")
