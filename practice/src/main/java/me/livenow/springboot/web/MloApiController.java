@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import me.livenow.springboot.domain.alarm.Alarm;
 import me.livenow.springboot.domain.mlo.Mlo;
 import me.livenow.springboot.domain.mlo.MloRepository;
-import me.livenow.springboot.service.posts.MloService;
+import me.livenow.springboot.service.MloService;
 import me.livenow.springboot.web.dto.MloSaveRequestDto;
 import org.springframework.web.bind.annotation.*;
 

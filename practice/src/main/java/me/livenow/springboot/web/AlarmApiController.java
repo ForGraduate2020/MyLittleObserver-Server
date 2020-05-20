@@ -3,7 +3,7 @@ package me.livenow.springboot.web;
 import lombok.RequiredArgsConstructor;
 import me.livenow.springboot.domain.alarm.Alarm;
 import me.livenow.springboot.domain.alarm.AlarmRepository;
-import me.livenow.springboot.service.posts.AlarmService;
+import me.livenow.springboot.service.AlarmService;
 import me.livenow.springboot.web.dto.AlarmSaveRequestDto;
 import me.livenow.springboot.web.dto.RecordResponseDto;
 import org.springframework.web.bind.annotation.*;

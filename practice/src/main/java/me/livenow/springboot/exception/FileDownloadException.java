@@ -1,4 +1,4 @@
-package me.livenow.springboot.fileUpDownLoad.exception;
+package me.livenow.springboot.exception;
 
 public class FileDownloadException extends RuntimeException {
 

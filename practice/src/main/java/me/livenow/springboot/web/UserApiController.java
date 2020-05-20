@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import me.livenow.springboot.domain.mlo.Mlo;
 import me.livenow.springboot.domain.mloUser.User;
 import me.livenow.springboot.domain.mloUser.UserRepository;
-import me.livenow.springboot.service.posts.UserService;
+import me.livenow.springboot.service.UserService;
 import me.livenow.springboot.web.dto.UserSaveRequestDto;
 import org.springframework.web.bind.annotation.*;
 

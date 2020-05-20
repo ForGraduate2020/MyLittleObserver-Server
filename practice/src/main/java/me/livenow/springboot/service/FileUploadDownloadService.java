@@ -1,8 +1,8 @@
-package me.livenow.springboot.fileUpDownLoad.service;
+package me.livenow.springboot.service;
 
-import me.livenow.springboot.fileUpDownLoad.exception.FileDownloadException;
-import me.livenow.springboot.fileUpDownLoad.exception.FileUploadException;
-import me.livenow.springboot.fileUpDownLoad.property.FileUploadProperties;
+import me.livenow.springboot.exception.FileDownloadException;
+import me.livenow.springboot.exception.FileUploadException;
+import me.livenow.springboot.FileUploadProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -15,7 +15,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.List;
 import java.util.stream.Stream;
 
 @Service

@@ -1,4 +1,4 @@
-package me.livenow.springboot.fileUpDownLoad.property;
+package me.livenow.springboot;
 
 
 import lombok.Getter;

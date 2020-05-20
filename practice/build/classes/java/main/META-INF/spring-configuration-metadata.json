@@ -2,15 +2,15 @@
   "groups": [
     {
       "name": "file",
-      "type": "me.livenow.springboot.fileUpDownLoad.property.FileUploadProperties",
-      "sourceType": "me.livenow.springboot.fileUpDownLoad.property.FileUploadProperties"
+      "type": "me.livenow.springboot.FileUploadProperties",
+      "sourceType": "me.livenow.springboot.FileUploadProperties"
     }
   ],
   "properties": [
     {
       "name": "file.upload-dir",
       "type": "java.lang.String",
-      "sourceType": "me.livenow.springboot.fileUpDownLoad.property.FileUploadProperties"
+      "sourceType": "me.livenow.springboot.FileUploadProperties"
     }
   ],
   "hints": []

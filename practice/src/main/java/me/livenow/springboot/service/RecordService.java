@@ -1,4 +1,4 @@
-package me.livenow.springboot.service.posts;
+package me.livenow.springboot.service;
 
 import lombok.RequiredArgsConstructor;
 import me.livenow.springboot.domain.alarm.Alarm;

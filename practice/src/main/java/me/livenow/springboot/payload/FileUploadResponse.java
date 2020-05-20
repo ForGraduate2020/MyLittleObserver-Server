@@ -1,4 +1,4 @@
-package me.livenow.springboot.fileUpDownLoad.payload;
+package me.livenow.springboot.payload;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
