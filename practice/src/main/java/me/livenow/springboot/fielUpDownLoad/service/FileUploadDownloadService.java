@@ -17,7 +17,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.stream.Stream;
 
-
 @Service
 public class FileUploadDownloadService {
     private final Path fileLocation;
@@ -51,6 +50,7 @@ public class FileUploadDownloadService {
             throw new FileUploadException("["+fileName+"] 파일 업로드에 실패하였습니다. 다시 시도하십시오.",e);
         }
     }
+/*
     public Resource loadFileAsResource(String fileName) {
         try {
             Path filePath = this.fileLocation.resolve(fileName).normalize();
@@ -65,11 +65,7 @@ public class FileUploadDownloadService {
             throw new FileDownloadException(fileName + " 파일을 찾을 수 없습니다.", e);
         }
     }
-
-
     public Stream<Path> loadAll;
-
-
-
+*/
 
 }
