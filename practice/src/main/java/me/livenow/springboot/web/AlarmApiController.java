@@ -18,6 +18,7 @@ public class AlarmApiController {
     //mlo에 알람 저장
     @PostMapping("/api/v1/mlos/{mloName}/alarms")
     public long save(@PathVariable("mloName") String name, @RequestBody AlarmSaveRequestDto alarmSaveRequestDto) {
+
         return alarmService.save(name, alarmSaveRequestDto);
     }
 

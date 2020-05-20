@@ -22,10 +22,11 @@ public class Record {
     @Column(name="record_id")
     private Long id;
 
-    private LocalDateTime localDateTime;
+
     private String fileName;
     private String fileDownloadUrl;
     private String fileType;
+    private LocalDateTime localDateTime;
     private long size;
 
     @OneToMany(mappedBy = "record",cascade = CascadeType.ALL)
