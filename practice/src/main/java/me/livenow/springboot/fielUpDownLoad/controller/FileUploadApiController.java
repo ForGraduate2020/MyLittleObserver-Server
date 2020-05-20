@@ -35,7 +35,7 @@ public class FileUploadApiController {
         String fileName = service.storeFile(file);
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/downloadFile/")
+                .path("/api/v1/downloadFile/")
                 .path(fileName)
                 .toUriString();
 
