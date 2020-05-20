@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import java.util.List;
 
 
@@ -38,6 +39,16 @@ public class MloRepository {
         return em.createQuery("select m from Mlo m where m.mloName = :mloName", Mlo.class)
                 .setParameter("mloName", name)
                 .getResultList();
+    }
+
+    public Mlo finOnedByName(String name){            // 이름에 의해서 조회하는 기능, 파라미터 바인딩
+        try {
+            return em.createQuery("select m from Mlo m where m.mloName = :mloName", Mlo.class)
+                    .setParameter("mloName", name)
+                    .getSingleResult();
+        } catch (NoResultException e){
+            throw new NoResultException("등록된 MloName이 아닙니다.");
+        }
     }
 
 

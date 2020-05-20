@@ -1,6 +1,8 @@
 package me.livenow.springboot.domain.alarm;
 
 import lombok.RequiredArgsConstructor;
+import me.livenow.springboot.domain.mlo.Mlo;
+import me.livenow.springboot.domain.mlo.MloRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -12,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AlarmRepository {
     private final EntityManager em;
+    private final MloRepository mloRepository;
 
     public void save(Alarm alarm) {
         em.persist(alarm);
@@ -20,7 +23,6 @@ public class AlarmRepository {
     public Alarm findOne(Long id) {
         return em.find(Alarm.class, id);
     }
-
 
     public Alarm findRecordByAlarmId(Long id) {
         try {
@@ -35,11 +37,16 @@ public class AlarmRepository {
         }
     }
 
-   public List<Alarm> findAllAlarmByRecordTime(String mloName, LocalDateTime localDateTime) {
-        return em.createQuery("select a from Alarm a"+
-                                " where a.date <= :localDateTime and a.record is NULL and a.mlo.mloName =:mloName ")
-                                .setParameter("localDateTime", localDateTime)
-                                .setParameter("mloName", mloName)
-                                .getResultList();
+    public List<Alarm> findAllAlarmByRecordTime(String mloName, LocalDateTime localDateTime) {
+
+        mloRepository.finOnedByName(mloName);
+        return em.createQuery("select a from Alarm a" +
+                " where a.date <= :localDateTime and a.record is NULL and a.mlo.mloName =:mloName ")
+                .setParameter("localDateTime", localDateTime)
+                .setParameter("mloName", mloName)
+                .getResultList();
+
+
     }
+
 }
