@@ -1,8 +1,6 @@
 package me.livenow.springboot.fielUpDownLoad.controller;
 
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import me.livenow.springboot.domain.alarm.Alarm;
 import me.livenow.springboot.domain.record.Record;
 import me.livenow.springboot.domain.record.RecordRepository;
 import me.livenow.springboot.fielUpDownLoad.payload.FileUploadResponse;
@@ -11,17 +9,9 @@ import me.livenow.springboot.service.posts.RecordService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,7 +19,7 @@ import java.util.stream.Collectors;
 @RestController
 public class FileUploadApiController {
 
-    private static  Logger logger = LoggerFactory.getLogger(FileUploadApiController.class);
+    private static final Logger logger = LoggerFactory.getLogger(FileUploadApiController.class);
     @Autowired
     private RecordRepository recordRepository;
 
