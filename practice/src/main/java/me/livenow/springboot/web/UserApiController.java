@@ -41,6 +41,9 @@ public class UserApiController {
         List<UserDto> collect = user.stream()
                 .map(u -> new UserDto(u))
                 .collect(Collectors.toList());
+        if(collect.isEmpty())
+          throw new IllegalStateException("사용자 " + name + "에 mlo가 등록되어 있지 않습니다.");
+
         return collect;
 
     }
@@ -48,11 +51,9 @@ public class UserApiController {
     public List<UserDto> mlosV1( @RequestParam(value = "offset", defaultValue = "0") int offset,
                                  @RequestParam(value = "limit", defaultValue = "100") int limit) {
         List<User> users = userRepository.findAllWithMlos(offset, limit);
-
         List<UserDto> collect = users.stream()
                 .map(u -> new UserDto(u))
                 .collect(Collectors.toList());
-
         return collect;
     }
 
@@ -89,7 +90,7 @@ public class UserApiController {
 
 
         public UserMloDto(Mlo mlo) {
-             mloId = mlo.getId();
+            mloId = mlo.getId();
             mloName = mlo.getMloName();
         }
     }

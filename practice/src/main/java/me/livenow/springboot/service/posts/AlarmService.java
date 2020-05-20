@@ -21,8 +21,6 @@ public class AlarmService {
 
     @Transactional
     public Long save(String name, AlarmSaveRequestDto alarmSaveRequestDto) {
-        System.out.println("name = " + name);
-
         List<Mlo> mloByNames = mloRepository.findByName(name);
         if(mloByNames.isEmpty())
             throw new IllegalStateException("등록된 mlo가 없습니다.");

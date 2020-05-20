@@ -35,9 +35,5 @@ public class Alarm {
         mlo.getAlarms().add(this);
     }
 
-    public void setRecord(Record record){
-        this.record=record;
-        record.getAlarms().add(this);
-    }
 
 }

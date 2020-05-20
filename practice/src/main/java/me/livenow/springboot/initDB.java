@@ -56,6 +56,9 @@ public class initDB {
 
             Record record =new Record();
             record.setFileName("record1");
+            record.setFileDownloadUrl("url1");
+            record.setFileType("image/jpeg");
+            record.setLocalDateTime(LocalDateTime.now());
             em.persist(record);
 
             Alarm alarm = new Alarm();
@@ -76,6 +79,9 @@ public class initDB {
 
             Record record2 =new Record();
             record2.setFileName("record2");
+            record.setFileDownloadUrl("url2");
+            record.setFileType("image/jpeg");
+            record2.setLocalDateTime(LocalDateTime.now());
             em.persist(record2);
         }
         public void dbInit2() {
@@ -95,6 +101,9 @@ public class initDB {
 
             Record record = new Record();
             record.setFileName("record3");
+            record.setFileDownloadUrl("url1");
+            record.setFileType("image/jpeg");
+            record.setLocalDateTime(LocalDateTime.now());
             em.persist(record);
 
             Alarm alarm = new Alarm();
@@ -115,6 +124,9 @@ public class initDB {
 
             Record record2 = new Record();
             record2.setFileName("record4");
+            record.setFileDownloadUrl("url2");
+            record.setFileType("image/jpeg");
+            record2.setLocalDateTime(LocalDateTime.now());
             em.persist(record2);
         }
     }

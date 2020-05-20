@@ -1,6 +1,23 @@
 package me.livenow.springboot.domain.record;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 
-public interface RecordRepository extends JpaRepository<Record, Long> {
+import javax.persistence.EntityManager;
+
+@RequiredArgsConstructor
+@Repository
+public class RecordRepository {
+
+    private final EntityManager em;
+
+    public void save(Record record){
+        em.persist(record);
+    }
+
+    public Record findOne(Long id){
+        return em.find(Record.class, id);
+    }
+
+
 }

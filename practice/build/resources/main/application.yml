@@ -18,7 +18,16 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
 
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 200MB
+      max-request-size: 215MB
+
 logging:
   level:
     org.hibernate.SQL: debug  #logger을 통해 하버네이트 실행 sql을 남김
     # org.hibernate.type: trace #쿼리 파라메타 로그를 남겨줌
+
+file:
+  upload-dir: ./uploads

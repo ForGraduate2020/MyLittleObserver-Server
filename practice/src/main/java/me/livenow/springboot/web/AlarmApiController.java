@@ -22,11 +22,9 @@ public class AlarmApiController {
     }
 
     //alarmId를 통한 recode 확인
-    @GetMapping("/api/v1/mlos/{alarmId}/record")
+    @GetMapping("/api/v1/alarms/{alarmId}/record")
     public RecordResponseDto findRecordByAlarmId(@PathVariable("alarmId") Long id){
         Alarm recordByAlarmId = alarmRepository.findRecordByAlarmId(id);
         return new RecordResponseDto(recordByAlarmId);
     }
-
-
 }
