@@ -1,19 +1,26 @@
-package me.livenow.springboot.fielUpDownLoad.controller;
+package me.livenow.springboot.fileUpDownLoad.controller;
 
 import lombok.Data;
 import me.livenow.springboot.domain.record.Record;
 import me.livenow.springboot.domain.record.RecordRepository;
-import me.livenow.springboot.fielUpDownLoad.payload.FileUploadResponse;
-import me.livenow.springboot.fielUpDownLoad.service.FileUploadDownloadService;
+import me.livenow.springboot.fileUpDownLoad.payload.FileUploadResponse;
+import me.livenow.springboot.fileUpDownLoad.service.FileUploadDownloadService;
 import me.livenow.springboot.service.posts.RecordService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import java.util.List;
-import java.util.stream.Collectors;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 
 @RestController
@@ -44,6 +51,7 @@ public class FileUploadApiController {
         return new FileUploadResponse(fileName, fileDownloadUri, file.getContentType(), file.getSize());
     }
 
+/*
     //fileName을 통한 fileUrl가져오기
     @GetMapping("/api/v1/downloadFile/{fileName:.+}")
     public List<FileDto> downloadFile(@PathVariable String fileName) {
@@ -65,10 +73,11 @@ public class FileUploadApiController {
             fileDownloadUrl = record.getFileDownloadUrl();
         }
     }
+*/
 
 
 
-/*    @GetMapping("/api/v1/downloadFile/{fileName:.+}")
+    @GetMapping("/api/v1/downloadFile/{fileName:.+}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request){
         // Load file as Resource
         Resource resource = service.loadFileAsResource(fileName);
@@ -90,5 +99,5 @@ public class FileUploadApiController {
                 .contentType(MediaType.parseMediaType(contentType))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
                 .body(resource);
-    }*/
+    }
 }

@@ -1,8 +1,8 @@
-package me.livenow.springboot.fielUpDownLoad.service;
+package me.livenow.springboot.fileUpDownLoad.service;
 
-import me.livenow.springboot.fielUpDownLoad.exception.FileDownloadException;
-import me.livenow.springboot.fielUpDownLoad.exception.FileUploadException;
-import me.livenow.springboot.fielUpDownLoad.property.FileUploadProperties;
+import me.livenow.springboot.fileUpDownLoad.exception.FileDownloadException;
+import me.livenow.springboot.fileUpDownLoad.exception.FileUploadException;
+import me.livenow.springboot.fileUpDownLoad.property.FileUploadProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -15,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 import java.util.stream.Stream;
 
 @Service
@@ -50,7 +51,7 @@ public class FileUploadDownloadService {
             throw new FileUploadException("["+fileName+"] 파일 업로드에 실패하였습니다. 다시 시도하십시오.",e);
         }
     }
-/*
+
     public Resource loadFileAsResource(String fileName) {
         try {
             Path filePath = this.fileLocation.resolve(fileName).normalize();
@@ -66,6 +67,6 @@ public class FileUploadDownloadService {
         }
     }
     public Stream<Path> loadAll;
-*/
+
 
 }
