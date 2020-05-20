@@ -34,8 +34,8 @@ public class FileUploadApiController {
     private final RecordRepository recordRepository;
     private final RecordService recordService;
 
-    @Autowired
-    private FileUploadDownloadService service;
+
+    private final FileUploadDownloadService service;
 
     //mloName을 통한 uploads
     @PostMapping("/api/v1/{mloName}/uploadFile")
