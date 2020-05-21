@@ -29,7 +29,7 @@ public class initDB {
     @PostConstruct
     public void init(){
         initService.dbInit1();
-        initService.dbInit2();
+      //  initService.dbInit2();
     }
 
     @Component
@@ -55,15 +55,16 @@ public class initDB {
 
 
             Record record =new Record();
-            record.setFileName("record1");
-            record.setFileDownloadUrl("url1");
-            record.setFileType("image/jpeg");
+            record.setFileName("file1");
+            record.setFileDownloadUrl("http://localhost:8080/downloadFile/file1.mp3");
+            record.setFileType("audio/mpeg");
+            record.setSize(5811859);
             record.setLocalDateTime(LocalDateTime.now());
             em.persist(record);
 
             Alarm alarm = new Alarm();
             alarm.setMlo(mlo);
-            alarm.setTumble("tumble1");
+            alarm.setTumble("9");
             alarm.setDate(LocalDateTime.now());
             alarm.setRecord(record);
             em.persist(alarm);
@@ -71,18 +72,12 @@ public class initDB {
 
             Alarm alarm2 = new Alarm();
             alarm2.setMlo(mlo);
-            alarm2.setTumble("tumble2");
+            alarm2.setDecibel("9");
+            alarm2.setTumble("2");
             alarm2.setDate(LocalDateTime.now());
             alarm2.setRecord(record);
             em.persist(alarm2);
 
-
-            Record record2 =new Record();
-            record2.setFileName("record2");
-            record.setFileDownloadUrl("url2");
-            record.setFileType("image/jpeg");
-            record2.setLocalDateTime(LocalDateTime.now());
-            em.persist(record2);
         }
         public void dbInit2() {
             User user = new User();

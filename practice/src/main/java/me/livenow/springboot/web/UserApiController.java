@@ -43,7 +43,7 @@ public class UserApiController {
                 .map(u -> new UserDto(u))
                 .collect(Collectors.toList());
         if(collect.isEmpty())
-          throw new IllegalStateException("사용자 " + name + "에 mlo가 등록되어 있지 않습니다.");
+          throw new IllegalStateException("사용자 " + name + "에 기걔가 등록되어 있지 않습니다.");
 
         return collect;
 

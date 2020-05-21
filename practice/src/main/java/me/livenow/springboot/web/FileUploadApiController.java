@@ -15,6 +15,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,7 +45,7 @@ public class FileUploadApiController {
         String fileName = service.storeFile(file);
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/api/v1/downloadFile/")
+                .path("/downloadFile/")
                 .path(fileName)
                 .toUriString();
 
@@ -48,11 +55,13 @@ public class FileUploadApiController {
     }
 
     //fileName을 통한 fileUrl가져오기
-    @GetMapping("/api/v1/downloadFile/{fileName:.+}")
+    @GetMapping("/api/v1/fileUrl/{fileName:.+}")
     public List<FileDto> downloadFile(@PathVariable String fileName) {
-        List<Record> allByfileName = recordRepository.findAllByFileName(fileName);
+        List<Record> allByFileName = recordRepository.findAllByFileName(fileName);
+        if(allByFileName.isEmpty())
+            throw new IllegalStateException("등록된 file이 아닙니다.");
 
-        List<FileDto> collect = allByfileName.stream()
+        List<FileDto> collect = allByFileName.stream()
                 .map(r -> new FileDto(r))
                 .collect(Collectors.toList());
 
@@ -63,16 +72,15 @@ public class FileUploadApiController {
     static class FileDto {
         private String fileDownloadUrl;
 
-
         public FileDto(Record record) {
             fileDownloadUrl = record.getFileDownloadUrl();
         }
     }
 
-/*
 
-    @GetMapping("/api/v1/downloadFile/{fileName:.+}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request){
+
+    @GetMapping("/downloadFile/{fileName:.+}")
+    public ResponseEntity<Resource> downloadFiles(@PathVariable String fileName, HttpServletRequest request){
         // Load file as Resource
         Resource resource = service.loadFileAsResource(fileName);
 
@@ -93,5 +101,5 @@ public class FileUploadApiController {
                 .contentType(MediaType.parseMediaType(contentType))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
                 .body(resource);
-    }*/
+    }
 }

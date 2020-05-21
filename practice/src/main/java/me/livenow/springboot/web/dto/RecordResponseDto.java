@@ -8,14 +8,14 @@ import me.livenow.springboot.domain.alarm.Alarm;
 
 @Getter
 public class RecordResponseDto {
-    private Long id;
+    private Long fileId;
     private String fileName;
     private String fileDownloadUrl;
     private String fileType;
 
 
     public RecordResponseDto(Alarm alarm) {
-        id = alarm.getRecord().getId();
+        fileId = alarm.getRecord().getId();
         fileName = alarm.getRecord().getFileName();
         fileDownloadUrl=alarm.getRecord().getFileDownloadUrl();
         fileType =alarm.getRecord().getFileType();

@@ -25,16 +25,20 @@ public class AlarmRepository {
     }
 
     public Alarm findRecordByAlarmId(Long id) {
-        try {
-            findOne(id);
-            return em.createQuery("select a from Alarm a" +
-                    " join fetch a.record r" +
-                    " where a.id= :id", Alarm.class)
-                    .setParameter("id", id)
-                    .getSingleResult();
-        } catch (NoResultException e) {
-            throw new NoResultException("입력한 Id와 같은 AlarmId가 없습니다.");
-        }
+
+            if(findOne(id)==null)
+                throw new NoResultException("등록된 alarmId가 없습니다.");
+
+            try {
+                return em.createQuery("select a from Alarm a" +
+                        " join fetch a.record r" +
+                        " where a.id= :id", Alarm.class)
+                        .setParameter("id", id)
+                        .getSingleResult();
+            } catch (NoResultException e){
+                throw new NoResultException( "입력한 Id에 등록된 file이 없습니다. ");
+            }
+
     }
 
     public List<Alarm> findAllAlarmByRecordTime(String mloName, LocalDateTime localDateTime) {
