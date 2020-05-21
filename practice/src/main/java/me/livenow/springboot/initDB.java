@@ -95,19 +95,10 @@ public class initDB {
             em.persist(mlo);
 
 
-            Record record =new Record();
-            record.setFileName("file1");
-            record.setFileDownloadUrl("http://ec2-15-165-113-25.ap-northeast-2.compute.amazonaws.com:8080/downloadFile/file1.mp3");
-            record.setFileType("audio/mpeg");
-            record.setSize(5811859);
-            record.setLocalDateTime(LocalDateTime.now());
-            em.persist(record);
-
             Alarm alarm = new Alarm();
             alarm.setMlo(mlo);
             alarm.setTumble("9");
             alarm.setDate(LocalDateTime.now());
-            alarm.setRecord(record);
             em.persist(alarm);
 
 
@@ -116,9 +107,18 @@ public class initDB {
             alarm2.setDecibel("9");
             alarm2.setTumble("2");
             alarm2.setDate(LocalDateTime.now());
-            alarm2.setRecord(record);
             em.persist(alarm2);
 
+            Record record =new Record();
+            record.setFileName("file1");
+            record.setFileDownloadUrl("http://ec2-15-165-113-25.ap-northeast-2.compute.amazonaws.com:8080/downloadFile/file1.mp3");
+            record.setFileType("audio/mpeg");
+            record.setSize(5811859);
+            record.setLocalDateTime(LocalDateTime.now());
+            em.persist(record);
+
+            record.addAlarm(alarm);
+            record.addAlarm(alarm2);
         }
     }
 }
