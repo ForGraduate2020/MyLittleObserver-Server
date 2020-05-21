@@ -7,6 +7,7 @@ import me.livenow.springboot.domain.mloUser.User;
 import me.livenow.springboot.domain.mloUser.UserRepository;
 import me.livenow.springboot.service.UserService;
 import me.livenow.springboot.web.dto.UserSaveRequestDto;
+import me.livenow.springboot.web.dto.UserSaveResponseDto;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -21,8 +22,8 @@ public class UserApiController {
 
     //user등록
     @PostMapping("/api/v1/users")
-    public long save(@RequestBody @Valid UserSaveRequestDto userSaveRequestDto){
-            return userService.userSave(userSaveRequestDto);
+    public UserSaveResponseDto save(@RequestBody @Valid UserSaveRequestDto userSaveRequestDto){
+            return new UserSaveResponseDto(userService.userSave(userSaveRequestDto));
     }
     // 모든 user 이름,id 조회
     @GetMapping("/api/v1/users")
@@ -33,10 +34,10 @@ public class UserApiController {
     }
 
     //user 이름으로  mlo 조회(mlo가 없을 시 조회 안됨 )
-    @GetMapping("/api/v1/users/{username}")
+    @GetMapping("/api/v1/users/{userName}")
     public List<UserDto> findOneUser(@RequestParam(value = "offset", defaultValue = "0") int offset,
                                      @RequestParam(value = "limit", defaultValue = "100") int limit,
-                                        @PathVariable("username") String name){
+                                        @PathVariable("userName") String name){
         List<User> user = userRepository.findMloByName(name, offset, limit);
         List<UserDto> collect = user.stream()
                 .map(u -> new UserDto(u))
