@@ -5,6 +5,7 @@ import me.livenow.springboot.domain.alarm.Alarm;
 import me.livenow.springboot.domain.alarm.AlarmRepository;
 import me.livenow.springboot.service.AlarmService;
 import me.livenow.springboot.web.dto.AlarmSaveRequestDto;
+import me.livenow.springboot.web.dto.AlarmSaveResponseDto;
 import me.livenow.springboot.web.dto.RecordResponseDto;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,8 +18,8 @@ public class AlarmApiController {
 
     //mlo에 알람 저장
     @PostMapping("/api/v1/mlos/{mloName}/alarms")
-    public long save(@PathVariable("mloName") String name, @RequestBody AlarmSaveRequestDto alarmSaveRequestDto) {
-        return alarmService.save(name, alarmSaveRequestDto);
+    public AlarmSaveResponseDto save(@PathVariable("mloName") String name, @RequestBody AlarmSaveRequestDto alarmSaveRequestDto) {
+        return  new AlarmSaveResponseDto(alarmService.save(name, alarmSaveRequestDto));
 
     }
 

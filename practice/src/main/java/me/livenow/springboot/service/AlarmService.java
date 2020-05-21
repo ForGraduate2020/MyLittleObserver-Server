@@ -25,7 +25,6 @@ public class AlarmService {
         if(mloByNames.isEmpty())
             throw new IllegalStateException("등록된 mlo가 없습니다.");
 
-
         Alarm alarm = new Alarm();
         alarm.setHeart(alarmSaveRequestDto.getHeart());
         alarm.setDecibel(alarmSaveRequestDto.getDecibel());

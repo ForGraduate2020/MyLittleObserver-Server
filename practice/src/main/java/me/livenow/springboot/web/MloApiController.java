@@ -7,6 +7,7 @@ import me.livenow.springboot.domain.mlo.Mlo;
 import me.livenow.springboot.domain.mlo.MloRepository;
 import me.livenow.springboot.service.MloService;
 import me.livenow.springboot.web.dto.MloSaveRequestDto;
+import me.livenow.springboot.web.dto.MloSaveResponseDto;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,8 +24,8 @@ public class MloApiController {
 
     //유저 이름을 통한 mlo 등록 기능
     @PostMapping("/api/v1/users/{userName}/mlos")
-    public long save(@PathVariable("userName") String name, @RequestBody @Valid MloSaveRequestDto mloSaveRequestDto) {
-        return mloService.mloSave(name, mloSaveRequestDto);
+    public MloSaveResponseDto save(@PathVariable("userName") String name, @RequestBody @Valid MloSaveRequestDto mloSaveRequestDto) {
+        return new MloSaveResponseDto(mloService.mloSave(name, mloSaveRequestDto));
     }
 
     //지정 mlo의 정보, 알람 보기

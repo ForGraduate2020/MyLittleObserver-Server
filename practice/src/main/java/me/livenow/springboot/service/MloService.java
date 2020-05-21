@@ -19,14 +19,15 @@ public class MloService {
 
     @Transactional
     public Long mloSave(String name, MloSaveRequestDto mloSaveRequestDto){
-        List<Mlo> findMlos = mloRepository.findByName(mloSaveRequestDto.getMloName());
-        if(!findMlos.isEmpty()){
-            throw new IllegalStateException("이미 사용중인 기기 번호입니다.");
-        }
 
         List<User> users = userRepository.findByName(name);
         if(users.isEmpty()){
             throw new IllegalStateException("등록된 사용자가 없습니다. ");
+        }
+
+        List<Mlo> findMlos = mloRepository.findByName(mloSaveRequestDto.getMloName());
+        if(!findMlos.isEmpty()){
+            throw new IllegalStateException("이미 사용중인 기기 번호입니다.");
         }
 
         Mlo mlo = new Mlo();
