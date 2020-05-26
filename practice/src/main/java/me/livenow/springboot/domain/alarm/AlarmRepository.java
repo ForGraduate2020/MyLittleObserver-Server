@@ -13,6 +13,7 @@ import java.util.List;
 @Repository
 @RequiredArgsConstructor
 public class AlarmRepository {
+
     private final EntityManager em;
     private final MloRepository mloRepository;
 
@@ -25,7 +26,6 @@ public class AlarmRepository {
     }
 
     public Alarm findRecordByAlarmId(Long id) {
-
             if(findOne(id)==null)
                 throw new NoResultException("등록된 alarmId가 없습니다.");
 
@@ -38,7 +38,6 @@ public class AlarmRepository {
             } catch (NoResultException e){
                 throw new NoResultException( "입력한 Id에 등록된 file이 없습니다. ");
             }
-
     }
 
     public List<Alarm> findAllAlarmByRecordTime(String mloName, LocalDateTime localDateTime) {
@@ -49,8 +48,5 @@ public class AlarmRepository {
                 .setParameter("localDateTime", localDateTime)
                 .setParameter("mloName", mloName)
                 .getResultList();
-
-
     }
-
 }

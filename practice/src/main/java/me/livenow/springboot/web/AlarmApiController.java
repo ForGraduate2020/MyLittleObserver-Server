@@ -19,8 +19,7 @@ public class AlarmApiController {
     //mlo에 알람 저장
     @PostMapping("/api/v1/mlos/{mloName}/alarms")
     public AlarmSaveResponseDto save(@PathVariable("mloName") String name, @RequestBody AlarmSaveRequestDto alarmSaveRequestDto) {
-        return  new AlarmSaveResponseDto(alarmService.save(name, alarmSaveRequestDto));
-
+        return new AlarmSaveResponseDto(alarmService.save(name, alarmSaveRequestDto));
     }
 
     //alarmId를 통한 recode 확인

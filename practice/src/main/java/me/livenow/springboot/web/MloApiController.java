@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @RestController
 public class MloApiController {
+
     private final MloService mloService;
     private final MloRepository mloRepository;
 
@@ -34,11 +35,11 @@ public class MloApiController {
                                            @RequestParam(value = "offset", defaultValue = "0") int offset,
                                            @RequestParam(value = "limit", defaultValue = "100") int limit) {
         List<Mlo> alarmByMlo = mloRepository.findAlarmByMlo(mloName, offset, limit);
-        List<MloDto> collect = alarmByMlo.stream().map(m -> new MloDto(m)).collect(Collectors.toList());
+        List<MloDto> collect = alarmByMlo.stream()
+                .map(m -> new MloDto(m))
+                .collect(Collectors.toList());
         return collect;
     }
-
-
 
     @Data
     static class MloDto {
@@ -71,6 +72,5 @@ public class MloApiController {
             date = alarm.getDate();
         }
     }
-
 }
 

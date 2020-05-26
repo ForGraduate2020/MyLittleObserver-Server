@@ -3,11 +3,9 @@ package me.livenow.springboot.web.dto;
 import lombok.Getter;
 import me.livenow.springboot.domain.alarm.Alarm;
 
-
-
-
 @Getter
 public class RecordResponseDto {
+
     private Long fileId;
     private String fileName;
     private String fileDownloadUrl;

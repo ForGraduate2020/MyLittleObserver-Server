@@ -14,6 +14,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class User {
+
     @Id @GeneratedValue
     @Column(name = "user_id")
     private Long id;
@@ -22,6 +23,4 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Mlo> mlos = new ArrayList<>();
-
-
 }

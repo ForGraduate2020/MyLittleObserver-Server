@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @RestController
 public class UserApiController {
+
     private final UserService userService;
     private final UserRepository userRepository;
 
@@ -25,6 +26,7 @@ public class UserApiController {
     public UserSaveResponseDto save(@RequestBody @Valid UserSaveRequestDto userSaveRequestDto){
             return new UserSaveResponseDto(userService.userSave(userSaveRequestDto));
     }
+
     // 모든 user 이름,id 조회
     @GetMapping("/api/v1/users")
     public List<AllUserDto> findAllUser(){
@@ -46,8 +48,8 @@ public class UserApiController {
           throw new IllegalStateException("사용자 " + name + "에 기걔가 등록되어 있지 않습니다.");
 
         return collect;
-
     }
+
     @GetMapping("/api/v1/users/mlos") //모든 user의 mlo 확인
     public List<UserDto> mlosV1( @RequestParam(value = "offset", defaultValue = "0") int offset,
                                  @RequestParam(value = "limit", defaultValue = "100") int limit) {
@@ -60,6 +62,7 @@ public class UserApiController {
 
     @Data
     static class AllUserDto{
+
         private Long userId;
         private String name;
 
@@ -71,6 +74,7 @@ public class UserApiController {
 
     @Data
     static class UserDto{
+
         private Long userId;
         private String name;
         private List<UserMloDto> mlos;
@@ -86,9 +90,9 @@ public class UserApiController {
 
     @Data
     static class UserMloDto {
+
         private Long mloId; //user 이름름
         private String mloName; //mlo 이름
-
 
         public UserMloDto(Mlo mlo) {
             mloId = mlo.getId();

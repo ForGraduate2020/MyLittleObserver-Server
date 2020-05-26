@@ -19,6 +19,7 @@ import java.util.stream.Stream;
 
 @Service
 public class FileUploadDownloadService {
+
     private final Path fileLocation;
 
     @Autowired
@@ -66,6 +67,4 @@ public class FileUploadDownloadService {
         }
     }
     public Stream<Path> loadAll;
-
-
 }

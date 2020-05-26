@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class UserSaveResponseDto {
+
     private Long id;
     private String message;
 

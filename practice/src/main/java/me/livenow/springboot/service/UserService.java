@@ -16,6 +16,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class UserService {
+
     private final UserRepository userRepository;
 
     @Transactional
@@ -29,7 +30,4 @@ public class UserService {
         userRepository.save(user);
         return user.getId();
     }
-
-
-
 }

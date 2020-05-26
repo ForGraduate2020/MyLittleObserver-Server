@@ -18,6 +18,7 @@ import static javax.persistence.FetchType.LAZY;
 @Setter
 @NoArgsConstructor
 public class Mlo {
+    
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="mlo_id")
     private Long id;
@@ -42,5 +43,4 @@ public class Mlo {
         alarms.add(alarm);
         alarm.setMlo(this);
     }
-
 }

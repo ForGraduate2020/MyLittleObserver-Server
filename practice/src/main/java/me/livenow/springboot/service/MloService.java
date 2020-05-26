@@ -14,6 +14,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class MloService {
+
     private final MloRepository mloRepository;
     private final UserRepository userRepository;
 
@@ -35,8 +36,5 @@ public class MloService {
         mlo.setUser(users.remove(0));
         mloRepository.save(mlo);
         return mlo.getId();
-
-
     }
-
 }

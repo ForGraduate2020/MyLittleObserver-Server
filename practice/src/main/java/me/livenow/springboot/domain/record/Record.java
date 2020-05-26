@@ -35,9 +35,5 @@ public class Record {
     public void addAlarm(Alarm alarm){
         alarms.add(alarm);
         alarm.setRecord(this);
-
-
     }
-
-
 }

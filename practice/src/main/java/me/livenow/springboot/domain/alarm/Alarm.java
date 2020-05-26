@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 public class Alarm {
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "alarm_id")
     private Long id;
@@ -34,6 +35,4 @@ public class Alarm {
         this.mlo = mlo;
         mlo.getAlarms().add(this);
     }
-
-
 }

@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 @RequiredArgsConstructor
 public class UserRepository {
+
     private final EntityManager em;
 
     public void save (User user){
@@ -37,7 +38,6 @@ public class UserRepository {
                 .setParameter("name", name)
                 .getResultList();
     }
-
 
     public List<User> findMloByName(String name, int offset, int limit){            // 이름에 의해서 조회하는 기능, 파라미터 바인딩
             if(findByName(name).isEmpty())

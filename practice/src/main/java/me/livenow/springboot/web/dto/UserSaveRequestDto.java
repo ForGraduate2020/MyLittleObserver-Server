@@ -9,6 +9,7 @@ import javax.validation.constraints.NotEmpty;
 @Getter
 @NoArgsConstructor
 public class UserSaveRequestDto {
+
     @NotEmpty
     private String username;
 }

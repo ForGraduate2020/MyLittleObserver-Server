@@ -36,6 +36,5 @@ public class RecordRepository {
                 .setFirstResult(0)
                 .setMaxResults(100)
                 .getResultList();
-
     }
 }

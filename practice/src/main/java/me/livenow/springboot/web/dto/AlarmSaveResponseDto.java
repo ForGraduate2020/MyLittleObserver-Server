@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class AlarmSaveResponseDto {
+
     private Long alarmId;
     private String message;
 

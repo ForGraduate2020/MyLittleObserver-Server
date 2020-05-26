@@ -31,9 +31,7 @@ import java.util.stream.Collectors;
 public class FileUploadApiController {
 
     private static final Logger logger = LoggerFactory.getLogger(FileUploadApiController.class);
-
     private final RecordRepository recordRepository;
-
     private final RecordService recordService;
 
     @Autowired
@@ -76,8 +74,6 @@ public class FileUploadApiController {
             fileDownloadUrl = record.getFileDownloadUrl();
         }
     }
-
-
 
     @GetMapping("/downloadFile/{fileName:.+}")
     public ResponseEntity<Resource> downloadFiles(@PathVariable String fileName, HttpServletRequest request){
