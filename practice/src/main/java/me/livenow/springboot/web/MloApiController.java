@@ -6,6 +6,7 @@ import me.livenow.springboot.domain.alarm.Alarm;
 import me.livenow.springboot.domain.mlo.Mlo;
 import me.livenow.springboot.domain.mlo.MloRepository;
 import me.livenow.springboot.service.MloService;
+import me.livenow.springboot.web.dto.MloDto;
 import me.livenow.springboot.web.dto.MloSaveRequestDto;
 import me.livenow.springboot.web.dto.MloSaveResponseDto;
 import org.springframework.web.bind.annotation.*;
@@ -40,37 +41,4 @@ public class MloApiController {
                 .collect(Collectors.toList());
         return collect;
     }
-
-    @Data
-    static class MloDto {
-        private Long mloId;
-        private String mloName;
-        private List<AlarmDto> alarms;
-
-        public MloDto(Mlo mlo) {
-            mloId = mlo.getId();
-            mloName = mlo.getMloName();
-            alarms = mlo.getAlarms().stream()
-                    .map(alarm -> new AlarmDto(alarm))
-                    .collect(Collectors.toList());
-        }
-    }
-
-    @Data
-    static class AlarmDto {
-        private Long alarmId;
-        private String heart;
-        private String decibel;
-        private String tumble;
-        private LocalDateTime date;
-
-        public AlarmDto(Alarm alarm) {
-            alarmId = alarm.getId();
-            heart = alarm.getHeart();
-            decibel = alarm.getDecibel();
-            tumble = alarm.getTumble();
-            date = alarm.getDate();
-        }
-    }
 }
-

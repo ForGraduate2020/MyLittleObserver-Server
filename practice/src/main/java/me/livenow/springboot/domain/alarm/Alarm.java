@@ -1,9 +1,12 @@
 package me.livenow.springboot.domain.alarm;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import me.livenow.springboot.domain.record.Record;
 import me.livenow.springboot.domain.mlo.Mlo;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -20,6 +23,8 @@ public class Alarm {
     private String heart;
     private String decibel;
     private String tumble;
+
+    @JsonFormat(timezone ="Asia/Seoul")
     private LocalDateTime date;
 
     @ManyToOne(fetch = FetchType.LAZY)
