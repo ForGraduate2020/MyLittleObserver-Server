@@ -51,7 +51,7 @@ public class initDB {
             Mlo mlo2 = new Mlo();
             mlo2.setMloName("mlo2");
             mlo2.setUser(user);
-            em.persist(mlo);
+            em.persist(mlo2);
 
 
             Record record =new Record();
@@ -92,7 +92,7 @@ public class initDB {
             Mlo mlo2 = new Mlo();
             mlo2.setMloName("mlo2");
             mlo2.setUser(user);
-            em.persist(mlo);
+            em.persist(mlo2);
 
 
             Alarm alarm = new Alarm();
