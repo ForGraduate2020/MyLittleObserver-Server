@@ -12,15 +12,15 @@ import java.util.stream.Collectors;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MloDto {
 
-        private Long mloId;
-        private String mloName;
-        private List<AlarmDto> alarms;
+    private Long mloId;
+    private String mloName;
+    private List<AlarmDto> alarms;
 
-        public MloDto(Mlo mlo) {
-            mloId = mlo.getId();
-            mloName = mlo.getMloName();
-            alarms = mlo.getAlarms().stream()
-                    .map(alarm -> new AlarmDto(alarm))
-                    .collect(Collectors.toList());
-        }
+    public MloDto(Mlo mlo) {
+        mloId = mlo.getId();
+        mloName = mlo.getMloName();
+        alarms = mlo.getAlarms().stream()
+                .map(alarm -> new AlarmDto(alarm))
+                .collect(Collectors.toList());
+    }
 }

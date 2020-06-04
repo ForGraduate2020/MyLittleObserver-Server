@@ -55,6 +55,8 @@ public class MloRepository {
                 " join fetch m.alarms a"+
                 " where m.mloName =:name ", Mlo.class)
                 .setParameter("name", name)
+                .setFirstResult(0)
+                .setMaxResults(100)
                 .getResultList();
     }
 }

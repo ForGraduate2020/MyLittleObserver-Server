@@ -59,4 +59,8 @@ public class AlarmRepository {
                 .getResultList();
         return resultList;
     }
+
+    public void delete(Alarm alarm) {
+        em.remove(alarm);
+    }
 }

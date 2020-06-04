@@ -45,4 +45,15 @@ public class AlarmService {
         return alarmRepository.findAllAlarmsByMloName(mloName, offset, limit);
 
     }
+
+    @Transactional
+    public String delete(Long id) {
+        Alarm alarm = alarmRepository.findOne(id);
+       /* Long id1 = alarm.getMlo().getId();
+        Mlo one = mloRepository.findOne(id1);
+        one.getAlarms().remove(alarm);*/
+        alarmRepository.delete(alarm);
+
+        return "알람이 삭제되었습니다.";
+    }
 }
