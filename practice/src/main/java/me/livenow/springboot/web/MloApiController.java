@@ -32,10 +32,8 @@ public class MloApiController {
 
     //지정 mlo의 정보, 알람 보기
     @GetMapping("/api/v1/mlos/{mloName}")
-    public List<MloDto> findAllAlarmsByMlo(@PathVariable("mloName") String mloName,
-                                           @RequestParam(value = "offset", defaultValue = "0") int offset,
-                                           @RequestParam(value = "limit", defaultValue = "100") int limit) {
-        List<Mlo> alarmByMlo = mloRepository.findAlarmByMlo(mloName, offset, limit);
+    public List<MloDto> findAllAlarmsByMlo(@PathVariable("mloName") String mloName) {
+        List<Mlo> alarmByMlo = mloRepository.findAlarmByMlo(mloName);
         List<MloDto> collect = alarmByMlo.stream()
                 .map(m -> new MloDto(m))
                 .collect(Collectors.toList());

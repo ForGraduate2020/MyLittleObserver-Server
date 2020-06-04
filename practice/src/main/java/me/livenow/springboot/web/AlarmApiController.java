@@ -4,10 +4,14 @@ import lombok.RequiredArgsConstructor;
 import me.livenow.springboot.domain.alarm.Alarm;
 import me.livenow.springboot.domain.alarm.AlarmRepository;
 import me.livenow.springboot.service.AlarmService;
+import me.livenow.springboot.web.dto.AlarmListDto;
 import me.livenow.springboot.web.dto.AlarmSaveRequestDto;
 import me.livenow.springboot.web.dto.AlarmSaveResponseDto;
 import me.livenow.springboot.web.dto.RecordResponseDto;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -28,4 +32,18 @@ public class AlarmApiController {
         Alarm recordByAlarmId = alarmRepository.findRecordByAlarmId(id);
         return new RecordResponseDto(recordByAlarmId);
     }
+
+    @GetMapping("/api/v1/alarms/{mloName}")
+    public List<AlarmListDto> findAllAlarmsByMloName(@PathVariable("mloName") String mloName,
+                                                        @RequestParam(value = "offset", defaultValue = "0") int offset,
+                                                        @RequestParam(value = "limit", defaultValue = "100") int limit){
+        List<Alarm> allAlarms = alarmService.findAllAlarmsByMloName(mloName, offset, limit);
+
+        List<AlarmListDto> collect = allAlarms.stream()
+                .map(a -> new AlarmListDto(a))
+                .collect(Collectors.toList());
+
+        return collect;
+    }
+
 }

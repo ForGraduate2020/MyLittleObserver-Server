@@ -1,6 +1,5 @@
 package me.livenow.springboot.domain.mlo;
 
-
 import lombok.RequiredArgsConstructor;
 import me.livenow.springboot.domain.mloUser.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import java.util.List;
-
 
 @Repository
 @RequiredArgsConstructor
@@ -52,13 +50,11 @@ public class MloRepository {
         }
     }
 
-    public List<Mlo> findAlarmByMlo(String name, int offset, int limit) {
+    public List<Mlo> findAlarmByMlo(String name) {
         return em.createQuery("select m from Mlo m"+
                 " join fetch m.alarms a"+
-                " where m.mloName =:name order by a.date desc", Mlo.class)
+                " where m.mloName =:name ", Mlo.class)
                 .setParameter("name", name)
-                .setFirstResult(offset)
-                .setMaxResults(limit)
                 .getResultList();
     }
 }

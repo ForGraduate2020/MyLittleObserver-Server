@@ -14,6 +14,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class AlarmService {
 
     private final AlarmRepository alarmRepository;
@@ -34,5 +35,14 @@ public class AlarmService {
 
         alarmRepository.save(alarm);
         return alarm.getId();
+    }
+
+    public List<Alarm> findAllAlarmsByMloName(String mloName, int offset, int limit) {
+        Mlo mlo = mloRepository.finOnedByName(mloName);
+        if(mlo==null)
+            throw new IllegalStateException("등록된 mloName이 아닙니다.");
+
+        return alarmRepository.findAllAlarmsByMloName(mloName, offset, limit);
+
     }
 }

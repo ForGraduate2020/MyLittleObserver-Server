@@ -49,4 +49,14 @@ public class AlarmRepository {
                 .setParameter("mloName", mloName)
                 .getResultList();
     }
+
+    public List<Alarm> findAllAlarmsByMloName(String mloName, int offset, int limit) {
+        List<Alarm> resultList = em.createQuery("select a from Alarm a" +
+                " where a.mlo.mloName =:mloName order by a.date desc ", Alarm.class)
+                .setParameter("mloName", mloName)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+        return resultList;
+    }
 }
