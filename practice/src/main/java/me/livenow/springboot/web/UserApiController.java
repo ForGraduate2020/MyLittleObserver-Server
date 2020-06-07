@@ -1,8 +1,6 @@
 package me.livenow.springboot.web;
 
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import me.livenow.springboot.domain.mlo.Mlo;
 import me.livenow.springboot.domain.mloUser.User;
 import me.livenow.springboot.domain.mloUser.UserRepository;
 import me.livenow.springboot.service.UserService;
@@ -39,15 +37,16 @@ public class UserApiController {
 
     //user 이름으로  mlo 조회(mlo가 없을 시 조회 안됨 )
     @GetMapping("/api/v1/users/{userName}")
-    public List<FindMloByUserResponseDto> findOneUser(@RequestParam(value = "offset", defaultValue = "0") int offset,
-                                                      @RequestParam(value = "limit", defaultValue = "100") int limit,
-                                                      @PathVariable("userName") String name){
+    public Object findOneUser(@RequestParam(value = "offset", defaultValue = "0") int offset,
+                              @RequestParam(value = "limit", defaultValue = "100") int limit,
+                              @PathVariable("userName") String name){
         List<User> user = userRepository.findMloByName(name, offset, limit);
         List<FindMloByUserResponseDto> collect = user.stream()
                 .map(u -> new FindMloByUserResponseDto(u))
                 .collect(Collectors.toList());
-        if(collect.isEmpty())
-          throw new IllegalStateException("사용자 " + name + "에 기걔가 등록되어 있지 않습니다.");
+        if(collect.isEmpty()) {
+            return "No mlo";
+        }
 
         return collect;
     }
