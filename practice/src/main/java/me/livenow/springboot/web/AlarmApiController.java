@@ -29,7 +29,7 @@ public class AlarmApiController {
     @PostMapping("/api/v1/mlos/{mloName}/alarms")
     public AlarmSaveResponseDto save(@PathVariable("mloName") String name, @RequestBody AlarmSaveRequestDto alarmSaveRequestDto) {
 
-        String notifications = AndroidPushPeriodicNotifications.alarmSaveNotification();
+        String notifications = AndroidPushPeriodicNotifications.alarmSaveNotification(alarmSaveRequestDto);
         HttpEntity<String> request = new HttpEntity<>(notifications);
         CompletableFuture<String> pushNotification = androidPushNotificationsService.send(request);
         CompletableFuture.allOf(pushNotification).join();

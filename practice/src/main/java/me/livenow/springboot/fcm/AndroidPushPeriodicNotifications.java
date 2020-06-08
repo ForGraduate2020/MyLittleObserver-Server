@@ -1,5 +1,6 @@
 package me.livenow.springboot.fcm;
 
+import me.livenow.springboot.web.dto.AlarmSaveRequestDto;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,7 +44,7 @@ public class AndroidPushPeriodicNotifications {
         return body.toString();
     }
 
-    public static String alarmSaveNotification() throws JSONException {
+    public static String alarmSaveNotification(AlarmSaveRequestDto alarmSaveRequestDto) throws JSONException {
         LocalDateTime localDateTime = LocalDateTime.now();
         JSONObject notification = new JSONObject();
         JSONObject body = new JSONObject();
@@ -64,9 +65,21 @@ public class AndroidPushPeriodicNotifications {
 
         body.put("registration_ids", array);
 
-        notification.put("title","센서가 기준치를 넘었습니다!");
-        notification.put("body","Time is "+localDateTime.getHour()+":"+localDateTime.getMinute());
-        System.out.println(notification.toString());
+        if(alarmSaveRequestDto.getDecibel()!=null){
+            notification.put("title"," Decibel warning!!");
+            notification.put("body","Decibel : " + alarmSaveRequestDto.getDecibel());
+            System.out.println(notification.toString());
+        }
+        if(alarmSaveRequestDto.getHeart()!=null){
+            notification.put("title"," Heart warning!!");
+            notification.put("body","Heart : " + alarmSaveRequestDto.getHeart());
+            System.out.println(notification.toString());
+        }
+        if(alarmSaveRequestDto.getTumble()!=null){
+            notification.put("title"," Tumble warning!!");
+            notification.put("body","Tumble : " + alarmSaveRequestDto.getTumble());
+            System.out.println(notification.toString());
+        }
 
         body.put("notification", notification);
         return body.toString();
